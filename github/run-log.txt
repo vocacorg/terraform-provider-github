@@ -1,0 +1,853 @@
+Terraform v0.11.8
+
+Configuring remote state backend...
+Initializing Terraform configuration...
+2018/08/17 08:07:58 [DEBUG] Using modified User-Agent: Terraform/0.11.8 TFE/d012b76
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  [32m+[0m create
+  [33m~[0m update in-place
+[31m-[0m/[32m+[0m destroy and then create replacement
+[0m
+Terraform will perform the following actions:
+
+[33m  [33m~[0m [33mmodule.acme.github_issue_label.bug
+[0m      description: "Something isn't working" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.acme.github_issue_label.enhancement
+[0m      description: "New feature or request" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.acme.github_issue_label.good_first_issue
+[0m      description: "Good for newcomers" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.acme.github_issue_label.help_wanted
+[0m      description: "Extra attention is needed" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.acme.github_issue_label.question
+[0m      description: "Further information is requested" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.acme.github_repository.provider
+[0m      topics.#:    "0" => "2"
+      topics.0:    "" => "terraform"
+      topics.1:    "" => "terraform-provider"
+[0m
+[0m[33m  [33m~[0m [33mmodule.alicloud.github_repository.provider
+[0m      topics.0:    "alicloud" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => "alicloud"
+[0m
+[0m[33m  [33m~[0m [33mmodule.archive.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "archive" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.arukas.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "arukas" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.atlas.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "atlas" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.aws.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "aws" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurerm.github_issue_label.breaking-change
+[0m      color:       "f2460d" => "d93f0b"
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurerm.github_issue_label.bug
+[0m      color:       "ff8c1a" => "f7c6c7"
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurerm.github_issue_label.crash
+[0m      color:       "ff0000" => "e11d21"
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurerm.github_issue_label.enhancement
+[0m      color:       "e6e600" => "d4c5f9"
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurerm.github_issue_label.good_first_issue
+[0m      color:       "1affff" => "128A0C"
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurerm.github_issue_label.help_wanted
+[0m      color:       "1affff" => "128A0C"
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurerm.github_issue_label.new-data-source
+[0m      color:       "07adaf" => "d4c5f9"
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurerm.github_issue_label.new-resource
+[0m      color:       "07adaf" => "d4c5f9"
+[0m
+[0m[32m  [32m+[0m [32mmodule.azurerm.github_issue_label.provider
+[0m      id:          <computed>
+      color:       "bfd4f2"
+      name:        "provider"
+      repository:  "terraform-provider-azurerm"
+      url:         <computed>
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurerm.github_issue_label.regression
+[0m      color:       "b60205" => "e11d21"
+[0m
+[0m[32m  [32m+[0m [32mmodule.azurerm.github_issue_label.stale
+[0m      id:          <computed>
+      color:       "e11d21"
+      name:        "stale"
+      repository:  "terraform-provider-azurerm"
+      url:         <computed>
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurerm.github_issue_label.waiting-response
+[0m      color:       "865dee" => "5319e7"
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurerm.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "azure" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurestack.github_issue_label.bug
+[0m      description: "Something isn't working" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurestack.github_issue_label.enhancement
+[0m      description: "New feature or request" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurestack.github_issue_label.good_first_issue
+[0m      description: "Good for newcomers" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurestack.github_issue_label.help_wanted
+[0m      description: "Extra attention is needed" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurestack.github_issue_label.question
+[0m      description: "Further information is requested" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.azurestack.github_repository.provider
+[0m      topics.#:    "0" => "2"
+      topics.0:    "" => "terraform"
+      topics.1:    "" => "terraform-provider"
+[0m
+[0m[33m  [33m~[0m [33mmodule.bitbucket.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "bitbucket" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.brightbox.github_issue_label.bug
+[0m      description: "Something isn't working" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.brightbox.github_issue_label.enhancement
+[0m      description: "New feature or request" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.brightbox.github_issue_label.good_first_issue
+[0m      description: "Good for newcomers" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.brightbox.github_issue_label.help_wanted
+[0m      description: "Extra attention is needed" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.brightbox.github_issue_label.question
+[0m      description: "Further information is requested" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.brightbox.github_repository.provider
+[0m      topics.#:    "0" => "2"
+      topics.0:    "" => "terraform"
+      topics.1:    "" => "terraform-provider"
+[0m
+[0m[33m  [33m~[0m [33mmodule.chef.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "chef" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m[31m-[0m/[32m+[0m [33mmodule.chef.github_repository_collaborator.collaborator[0] [31m[1m(new resource required)[0m
+[0m      id:          "terraform-provider-chef:svanharmelen" => <computed> [31m(forces new resource)[0m
+      permission:  "admin" => "push" [31m(forces new resource)[0m
+      repository:  "terraform-provider-chef" => "terraform-provider-chef"
+      username:    "svanharmelen" => "svanharmelen"
+[0m
+[0m[33m  [33m~[0m [33mmodule.circonus.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "circonus" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.clc.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "centurylinkcloud" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.cloudflare.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "cloudflare" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.cloudscale.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "cloudscale" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.cloudstack.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "cloudstack" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m[31m-[0m/[32m+[0m [33mmodule.cloudstack.github_repository_collaborator.collaborator [31m[1m(new resource required)[0m
+[0m      id:          "terraform-provider-cloudstack:svanharmelen" => <computed> [31m(forces new resource)[0m
+      permission:  "admin" => "push" [31m(forces new resource)[0m
+      repository:  "terraform-provider-cloudstack" => "terraform-provider-cloudstack"
+      username:    "svanharmelen" => "svanharmelen"
+[0m
+[0m[33m  [33m~[0m [33mmodule.cobbler.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "cobbler" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.consul.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "consul" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.datadog.github_issue_label.bug
+[0m      color:       "d93f0b" => "f7c6c7"
+[0m
+[0m[32m  [32m+[0m [32mmodule.datadog.github_issue_label.crash
+[0m      id:          <computed>
+      color:       "e11d21"
+      name:        "crash"
+      repository:  "terraform-provider-datadog"
+      url:         <computed>
+[0m
+[0m[32m  [32m+[0m [32mmodule.datadog.github_issue_label.dependencies
+[0m      id:          <computed>
+      color:       "fad8c7"
+      name:        "dependencies"
+      repository:  "terraform-provider-datadog"
+      url:         <computed>
+[0m
+[0m[32m  [32m+[0m [32mmodule.datadog.github_issue_label.enhancement
+[0m      id:          <computed>
+      color:       "d4c5f9"
+      name:        "enhancement"
+      repository:  "terraform-provider-datadog"
+      url:         <computed>
+[0m
+[0m[32m  [32m+[0m [32mmodule.datadog.github_issue_label.provider
+[0m      id:          <computed>
+      color:       "bfd4f2"
+      name:        "provider"
+      repository:  "terraform-provider-datadog"
+      url:         <computed>
+[0m
+[0m[32m  [32m+[0m [32mmodule.datadog.github_issue_label.regression
+[0m      id:          <computed>
+      color:       "e11d21"
+      name:        "regression"
+      repository:  "terraform-provider-datadog"
+      url:         <computed>
+[0m
+[0m[32m  [32m+[0m [32mmodule.datadog.github_issue_label.size[0]
+[0m      id:          <computed>
+      color:       "ffffff"
+      name:        "size/XS"
+      repository:  "terraform-provider-datadog"
+      url:         <computed>
+[0m
+[0m[32m  [32m+[0m [32mmodule.datadog.github_issue_label.size[1]
+[0m      id:          <computed>
+      color:       "ffffff"
+      name:        "size/S"
+      repository:  "terraform-provider-datadog"
+      url:         <computed>
+[0m
+[0m[32m  [32m+[0m [32mmodule.datadog.github_issue_label.size[2]
+[0m      id:          <computed>
+      color:       "ffffff"
+      name:        "size/M"
+      repository:  "terraform-provider-datadog"
+      url:         <computed>
+[0m
+[0m[32m  [32m+[0m [32mmodule.datadog.github_issue_label.size[3]
+[0m      id:          <computed>
+      color:       "ffffff"
+      name:        "size/L"
+      repository:  "terraform-provider-datadog"
+      url:         <computed>
+[0m
+[0m[32m  [32m+[0m [32mmodule.datadog.github_issue_label.size[4]
+[0m      id:          <computed>
+      color:       "ffffff"
+      name:        "size/XL"
+      repository:  "terraform-provider-datadog"
+      url:         <computed>
+[0m
+[0m[32m  [32m+[0m [32mmodule.datadog.github_issue_label.size[5]
+[0m      id:          <computed>
+      color:       "ffffff"
+      name:        "size/XXL"
+      repository:  "terraform-provider-datadog"
+      url:         <computed>
+[0m
+[0m[32m  [32m+[0m [32mmodule.datadog.github_issue_label.stale
+[0m      id:          <computed>
+      color:       "e11d21"
+      name:        "stale"
+      repository:  "terraform-provider-datadog"
+      url:         <computed>
+[0m
+[0m[32m  [32m+[0m [32mmodule.datadog.github_issue_label.technical-debt
+[0m      id:          <computed>
+      color:       "1d76db"
+      name:        "technical-debt"
+      repository:  "terraform-provider-datadog"
+      url:         <computed>
+[0m
+[0m[33m  [33m~[0m [33mmodule.datadog.github_issue_label.upstream
+[0m      color:       "d4c5f9" => "fad8c7"
+[0m
+[0m[32m  [32m+[0m [32mmodule.datadog.github_issue_label.waiting-response
+[0m      id:          <computed>
+      color:       "5319e7"
+      name:        "waiting-response"
+      repository:  "terraform-provider-datadog"
+      url:         <computed>
+[0m
+[0m[33m  [33m~[0m [33mmodule.datadog.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "datadog" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.digitalocean.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "digitalocean" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.dme.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "dnsmadeeasy" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.dns.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "dns" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.dnsimple.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "dnsimple" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.docker.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "docker" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.dyn.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "dyndns" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.fastly.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "fastly" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.flexibleengine.github_issue_label.bug
+[0m      description: "Something isn't working" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.flexibleengine.github_issue_label.enhancement
+[0m      description: "New feature or request" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.flexibleengine.github_issue_label.good_first_issue
+[0m      description: "Good for newcomers" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.flexibleengine.github_issue_label.help_wanted
+[0m      description: "Extra attention is needed" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.flexibleengine.github_issue_label.question
+[0m      description: "Further information is requested" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.flexibleengine.github_repository.provider
+[0m      topics.#:    "0" => "2"
+      topics.0:    "" => "terraform"
+      topics.1:    "" => "terraform-provider"
+[0m
+[0m[33m  [33m~[0m [33mmodule.github.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "github" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.gitlab.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "gitlab" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.google.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "google-cloud" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.grafana.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "grafana" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.hcloud.github_issue_label.bug
+[0m      description: "Something isn't working" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.hcloud.github_issue_label.enhancement
+[0m      description: "New feature or request" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.hcloud.github_issue_label.good_first_issue
+[0m      description: "Good for newcomers" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.hcloud.github_issue_label.help_wanted
+[0m      description: "Extra attention is needed" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.hcloud.github_issue_label.question
+[0m      description: "Further information is requested" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.hcloud.github_repository.provider
+[0m      topics.#:    "0" => "2"
+      topics.0:    "" => "terraform"
+      topics.1:    "" => "terraform-provider"
+[0m
+[0m[33m  [33m~[0m [33mmodule.heroku.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "heroku" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m[31m-[0m/[32m+[0m [33mmodule.heroku.github_repository_collaborator.collaborator[2] [31m[1m(new resource required)[0m
+[0m      id:          "terraform-provider-heroku:justincampbell" => <computed> [31m(forces new resource)[0m
+      permission:  "admin" => "push" [31m(forces new resource)[0m
+      repository:  "terraform-provider-heroku" => "terraform-provider-heroku"
+      username:    "justincampbell" => "justincampbell"
+[0m
+[0m[32m  [32m+[0m [32mmodule.http.github_issue_label.good_first_issue
+[0m      id:          <computed>
+      color:       "128A0C"
+      name:        "good first issue"
+      repository:  "terraform-provider-http"
+      url:         <computed>
+[0m
+[0m[32m  [32m+[0m [32mmodule.http.github_issue_label.size[0]
+[0m      id:          <computed>
+      color:       "ffffff"
+      name:        "size/XS"
+      repository:  "terraform-provider-http"
+      url:         <computed>
+[0m
+[0m[32m  [32m+[0m [32mmodule.http.github_issue_label.size[2]
+[0m      id:          <computed>
+      color:       "ffffff"
+      name:        "size/M"
+      repository:  "terraform-provider-http"
+      url:         <computed>
+[0m
+[0m[32m  [32m+[0m [32mmodule.http.github_issue_label.size[4]
+[0m      id:          <computed>
+      color:       "ffffff"
+      name:        "size/XL"
+      repository:  "terraform-provider-http"
+      url:         <computed>
+[0m
+[0m[32m  [32m+[0m [32mmodule.http.github_issue_label.size[5]
+[0m      id:          <computed>
+      color:       "ffffff"
+      name:        "size/XXL"
+      repository:  "terraform-provider-http"
+      url:         <computed>
+[0m
+[0m[33m  [33m~[0m [33mmodule.http.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "http" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.huaweicloud.github_issue_label.bug
+[0m      description: "Something isn't working" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.huaweicloud.github_issue_label.enhancement
+[0m      description: "New feature or request" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.huaweicloud.github_issue_label.good_first_issue
+[0m      description: "Good for newcomers" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.huaweicloud.github_issue_label.help_wanted
+[0m      description: "Extra attention is needed" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.huaweicloud.github_issue_label.question
+[0m      description: "Further information is requested" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.huaweicloud.github_repository.provider
+[0m      topics.#:    "0" => "2"
+      topics.0:    "" => "terraform"
+      topics.1:    "" => "terraform-provider"
+[0m
+[0m[33m  [33m~[0m [33mmodule.icinga2.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "icinga2" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.ignition.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "ignition" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.influxdb.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "influxdb" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.kubernetes.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "kubernetes" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.librato.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "librato" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.logentries.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "logentries" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.logicmonitor.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "logicmonitor" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.mailgun.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "mailgun" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.mysql.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "mysql" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.newrelic.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "newrelic" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m[31m-[0m/[32m+[0m [33mmodule.newrelic.github_repository_collaborator.ci_user [31m[1m(new resource required)[0m
+[0m      id:          "terraform-provider-newrelic:tf-release-bot" => <computed> [31m(forces new resource)[0m
+      permission:  "admin" => "push" [31m(forces new resource)[0m
+      repository:  "terraform-provider-newrelic" => "terraform-provider-newrelic"
+      username:    "tf-release-bot" => "tf-release-bot"
+[0m
+[0m[33m  [33m~[0m [33mmodule.nomad.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "nomad" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.ns1.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "nsone" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.nsxt.github_issue_label.bug
+[0m      description: "Something isn't working" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.nsxt.github_issue_label.enhancement
+[0m      description: "New feature or request" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.nsxt.github_issue_label.good_first_issue
+[0m      description: "Good for newcomers" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.nsxt.github_issue_label.help_wanted
+[0m      description: "Extra attention is needed" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.nsxt.github_issue_label.question
+[0m      description: "Further information is requested" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.nsxt.github_repository.provider
+[0m      topics.#:    "0" => "2"
+      topics.0:    "" => "terraform"
+      topics.1:    "" => "terraform-provider"
+[0m
+[0m[33m  [33m~[0m [33mmodule.oneandone.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "oneandone" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.opc.github_repository.provider
+[0m      topics.#:    "4" => "2"
+      topics.0:    "opc" => "terraform"
+      topics.1:    "oracle" => "terraform-provider"
+      topics.2:    "terraform" => ""
+      topics.3:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.openstack.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "openstack" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.opsgenie.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "opsgenie" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.oraclepaas.github_issue_label.bug
+[0m      description: "Something isn't working" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.oraclepaas.github_issue_label.enhancement
+[0m      description: "New feature or request" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.oraclepaas.github_issue_label.good_first_issue
+[0m      description: "Good for newcomers" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.oraclepaas.github_issue_label.help_wanted
+[0m      description: "Extra attention is needed" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.oraclepaas.github_issue_label.question
+[0m      description: "Further information is requested" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.oraclepaas.github_repository.provider
+[0m      topics.#:    "0" => "2"
+      topics.0:    "" => "terraform"
+      topics.1:    "" => "terraform-provider"
+[0m
+[0m[33m  [33m~[0m [33mmodule.ovh.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "ovh" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.packet.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "packet" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.pagerduty.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "pagerduty" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.postgresql.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "postgresql" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.powerdns.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "powerdns" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.profitbricks.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "profitbricks" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.rabbitmq.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "rabbitmq" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.rancher.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "rancher" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.random.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "random" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.rundeck.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "rundeck" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.runscope.github_issue_label.bug
+[0m      description: "Something isn't working" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.runscope.github_issue_label.enhancement
+[0m      description: "New feature or request" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.runscope.github_issue_label.good_first_issue
+[0m      description: "Good for newcomers" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.runscope.github_issue_label.help_wanted
+[0m      description: "Extra attention is needed" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.runscope.github_issue_label.question
+[0m      description: "Further information is requested" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.runscope.github_repository.provider
+[0m      topics.#:    "0" => "2"
+      topics.0:    "" => "terraform"
+      topics.1:    "" => "terraform-provider"
+[0m
+[0m[33m  [33m~[0m [33mmodule.scaleway.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "scaleway" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.softlayer.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "softlayer" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.spotinst.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "spotinst" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.statuscake.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "statuscake" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.telefonicaopencloud.github_issue_label.bug
+[0m      description: "Something isn't working" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.telefonicaopencloud.github_issue_label.enhancement
+[0m      description: "New feature or request" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.telefonicaopencloud.github_issue_label.good_first_issue
+[0m      description: "Good for newcomers" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.telefonicaopencloud.github_issue_label.help_wanted
+[0m      description: "Extra attention is needed" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.telefonicaopencloud.github_issue_label.question
+[0m      description: "Further information is requested" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.telefonicaopencloud.github_repository.provider
+[0m      topics.#:    "0" => "2"
+      topics.0:    "" => "terraform"
+      topics.1:    "" => "terraform-provider"
+[0m
+[0m[33m  [33m~[0m [33mmodule.template.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "template" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.terraform-provider-opentelekomcloud.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.0:    "open-telekom-cloud" => "terraform"
+      topics.1:    "terraform" => "terraform-provider"
+      topics.2:    "terraform-provider" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.terraform-provider-panos.github_issue_label.bug
+[0m      description: "Something isn't working" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.terraform-provider-panos.github_issue_label.enhancement
+[0m      description: "New feature or request" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.terraform-provider-panos.github_issue_label.good_first_issue
+[0m      description: "Good for newcomers" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.terraform-provider-panos.github_issue_label.help_wanted
+[0m      description: "Extra attention is needed" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.terraform-provider-panos.github_issue_label.question
+[0m      description: "Further information is requested" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.terraform-provider-panos.github_repository.provider
+[0m      topics.#:    "0" => "2"
+      topics.0:    "" => "terraform"
+      topics.1:    "" => "terraform-provider"
+[0m
+[0m[33m  [33m~[0m [33mmodule.tfe.github_issue_label.bug
+[0m      description: "Something isn't working" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.tfe.github_issue_label.enhancement
+[0m      description: "New feature or request" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.tfe.github_issue_label.good_first_issue
+[0m      description: "Good for newcomers" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.tfe.github_issue_label.help_wanted
+[0m      description: "Extra attention is needed" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.tfe.github_issue_label.question
+[0m      description: "Further information is requested" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.tfe.github_repository.provider
+[0m      topics.#:    "0" => "2"
+      topics.0:    "" => "terraform"
+      topics.1:    "" => "terraform-provider"
+[0m
+[0m[33m  [33m~[0m [33mmodule.tls.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.2:    "tls" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.triton.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.2:    "triton" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.ultradns.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.2:    "ultradns" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.vault.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.2:    "vault" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.vcd.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.2:    "vcloud-director" => ""
+[0m
+[0m[33m  [33m~[0m [33mmodule.vsphere.github_repository.provider
+[0m      topics.#:    "3" => "2"
+      topics.2:    "vsphere" => ""
+[0m
+[0m
+[0m[1mPlan:[0m 25 to add, 151 to change, 4 to destroy.[0m
