@@ -305,12 +305,14 @@
 		{
 			"checksumSHA1": "fvjFEz5PBN1m9ALWf9UuLgTFWLg=",
 			"path": "github.com/hashicorp/go-getter",
-			"revision": "90bb99a48d86cf1d327cee9968f7428f90ba13c1"
+			"revision": "90bb99a48d86cf1d327cee9968f7428f90ba13c1",
+			"revisionTime": "2018-03-27T01:01:14Z"
 		},
 		{
 			"checksumSHA1": "9J+kDr29yDrwsdu2ULzewmqGjpA=",
 			"path": "github.com/hashicorp/go-getter/helper/url",
-			"revision": "90bb99a48d86cf1d327cee9968f7428f90ba13c1"
+			"revision": "90bb99a48d86cf1d327cee9968f7428f90ba13c1",
+			"revisionTime": "2018-03-27T01:01:14Z"
 		},
 		{
 			"checksumSHA1": "miVF4/7JP0lRwZvFJGKwZWk7aAQ=",
