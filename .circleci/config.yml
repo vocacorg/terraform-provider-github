@@ -20,6 +20,12 @@ jobs:
           command: |
             trap "go-junit-report <${TEST_RESULTS}/go-test.out > ${TEST_RESULTS}/go-test-report.xml" EXIT
             go test -v ./... | tee ${TEST_RESULTS}/go-test.out
+      - run:
+          name: Run acceptance tests
+          # store the results of our tests in the $TEST_RESULTS directory
+          command: |
+            trap "go-junit-report <${TEST_RESULTS}/go-test.out > ${TEST_RESULTS}/go-test-report.xml" EXIT
+            make testacc | tee ${TEST_RESULTS}/go-test.out
       - save_cache: # store cache in the /go/pkg directory
           key: v1-pkg-cache
           paths:
