@@ -40,6 +40,7 @@ func resourceGithubRepositoryFile() *schema.Resource {
 
 				d.SetId(fmt.Sprintf("%s/%s", repo, file))
 				d.Set("branch", branch)
+				d.Set("overwrite", false)
 
 				return []*schema.ResourceData{d}, nil
 			},
@@ -92,6 +93,12 @@ func resourceGithubRepositoryFile() *schema.Resource {
 				Type:        schema.TypeString,
 				Computed:    true,
 				Description: "The blob SHA of the file",
+			},
+			"overwrite": {
+				Type:        schema.TypeBool,
+				Optional:    true,
+				Description: "Enable overwriting existing files, defaults to \"false\"",
+				Default:     false,
 			},
 		},
 	}
@@ -161,6 +168,33 @@ func resourceGithubRepositoryFileCreate(d *schema.ResourceData, meta interface{}
 		opts.Message = &m
 	}
 
+	log.Printf("[DEBUG] Checking if overwriting a repository file: %s/%s/%s in branch: %s", org, repo, file, branch)
+	checkOpt := github.RepositoryContentGetOptions{Ref: branch}
+	fileContent, _, resp, err := client.Repositories.GetContents(ctx, org, repo, file, &checkOpt)
+	if err != nil {
+		if resp != nil {
+			if resp.StatusCode != 404 {
+				// 404 is a valid response if the file does not exist
+				return err
+			}
+		} else {
+			// Response should be non-nil
+			return err
+		}
+	}
+
+	if fileContent != nil {
+		if d.Get("overwrite").(bool) {
+			// Overwrite existing file if requested by configuring the options for
+			// `client.Repositories.CreateFile` to match the existing file's SHA
+			opts.SHA = fileContent.SHA
+		} else {
+			// Error if overwriting a file is not requested
+			return fmt.Errorf("[ERROR] Refusing to overwrite existing file. Configure `overwrite` to `true` to override.")
+		}
+	}
+
+	// Create a new or overwritten file
 	log.Printf("[DEBUG] Creating repository file: %s/%s/%s in branch: %s", org, repo, file, branch)
 	_, _, err = client.Repositories.CreateFile(ctx, org, repo, file, opts)
 	if err != nil {
