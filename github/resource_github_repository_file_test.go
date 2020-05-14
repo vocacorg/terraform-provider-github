@@ -297,6 +297,32 @@ func TestAccGithubRepositoryFile_committer(t *testing.T) {
 	})
 }
 
+func TestAccGithubRepositoryFile_overwrite(t *testing.T) {
+	var content github.RepositoryContent
+	var commit github.RepositoryCommit
+
+	rn := "github_repository_file.foo"
+	randString := acctest.RandStringFromCharSet(10, acctest.CharSetAlphaNum)
+	path := fmt.Sprintf("tf-acc-test-file-%s", randString)
+
+	resource.Test(t, resource.TestCase{
+		PreCheck:     func() { testAccPreCheck(t) },
+		Providers:    testAccProviders,
+		CheckDestroy: testAccCheckGithubRepositoryFileDestroy,
+		Steps: []resource.TestStep{
+			{
+				Config: testAccGithubRepositoryFileOverwriteConfig(),
+				Check: resource.ComposeTestCheckFunc(
+					testAccCheckGithubRepositoryFileExists(rn, path, "master", &content, &commit),
+					testAccCheckGithubRepositoryFileAttributes(&content, &testAccGithubRepositoryFileExpectedAttributes{
+						Content: base64.StdEncoding.EncodeToString([]byte("Terraform acceptance test file")) + "\n",
+					}),
+				),
+			},
+		},
+	})
+}
+
 func testAccCheckGithubRepositoryFileExists(n, path, branch string, content *github.RepositoryContent, commit *github.RepositoryCommit) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 
@@ -439,4 +465,45 @@ resource "github_repository_file" "foo" {
   commit_email   = "terraform@example.com"
 }
 `, file, content)
+}
+
+func testAccGithubRepositoryFileOverwriteConfig() string {
+
+	owner := os.Getenv("GITHUB_ORGANIZATION")
+	repository := os.Getenv("GITHUB_TEMPLATE_REPOSITORY")
+	randString := acctest.RandStringFromCharSet(10, acctest.CharSetAlphaNum)
+
+	return fmt.Sprintf(`
+resource "github_repository" "foo" {
+  name         = "tf-acc-test-%s"
+  description  = "Terraform acceptance tests %s"
+  homepage_url = "http://example.com/"
+
+	template {
+		owner = "%s"
+		repository = "%s"
+	}
+
+	# So that acceptance tests can be run in a github organization
+  # with no billing
+  private = false
+
+  has_issues         = true
+  has_wiki           = true
+  allow_merge_commit = true
+  allow_squash_merge = false
+  allow_rebase_merge = false
+  has_downloads      = true
+
+}
+
+resource "github_repository_file" "foo" {
+  repository     = github_repository.foo.name
+  file           = ".gitignore"
+  content        = "**/.terraform/*"
+  commit_message = "Managed by Terraform"
+  commit_author  = "Terraform User"
+  commit_email   = "terraform@example.com"
+}
+`, randString, randString, owner, repository)
 }
