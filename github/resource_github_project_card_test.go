@@ -19,9 +19,9 @@ func TestAccGithubProjectCard_basic(t *testing.T) {
 	updatedNote := "## Accepted :point_up:"
 
 	resource.ParallelTest(t, resource.TestCase{
-		PreCheck:  func() { testAccPreCheck(t) },
-		Providers: testAccProviders,
-		// CheckDestroy: testAccGithubProjectCardDestroy,
+		PreCheck:     func() { testAccPreCheck(t) },
+		Providers:    testAccProviders,
+		CheckDestroy: testAccGithubProjectCardDestroy,
 		Steps: []resource.TestStep{
 			{
 				Config: testAccGithubProjectCardConfig(note),
