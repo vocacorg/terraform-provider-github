@@ -41,11 +41,6 @@ func TestAccGithubProjectCard_basic(t *testing.T) {
 					}),
 				),
 			},
-			// {
-			// 	ResourceName:      rn,
-			// 	ImportState:       true,
-			// 	ImportStateVerify: true,
-			// },
 		},
 	})
 }
