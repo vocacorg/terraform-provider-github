@@ -42,10 +42,11 @@ func TestAccGithubProjectCard_basic(t *testing.T) {
 				),
 			},
 			{
-				ResourceName:      rn,
-				ImportStateIdFunc: testAccGithubProjectCardImportStateIdFunc(rn),
-				ImportState:       true,
-				ImportStateVerify: true,
+				ResourceName:            rn,
+				ImportStateIdFunc:       testAccGithubProjectCardImportStateIdFunc(rn),
+				ImportState:             true,
+				ImportStateVerify:       true,
+				ImportStateVerifyIgnore: []string{"column_id"},
 			},
 		},
 	})
