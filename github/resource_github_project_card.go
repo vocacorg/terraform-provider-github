@@ -148,7 +148,7 @@ func resourceGithubProjectCardImport(d *schema.ResourceData, meta interface{}) (
 	log.Printf("[DEBUG] Importing project card with card ID: %d", cardID)
 	client := meta.(*Organization).v3client
 	ctx := context.Background()
-	card, _, err := client.Projects.GetProjectCard(ctx, int64(cardID))
+	card, _, err := client.Projects.GetProjectCard(ctx, cardID)
 	if card == nil || err != nil {
 		return []*schema.ResourceData{d}, err
 	}
