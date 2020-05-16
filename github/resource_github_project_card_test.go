@@ -41,6 +41,12 @@ func TestAccGithubProjectCard_basic(t *testing.T) {
 					}),
 				),
 			},
+			{
+				ResourceName:      rn,
+				ImportStateIdFunc: testAccGithubProjectCardImportStateIdFunc(rn),
+				ImportState:       true,
+				ImportStateVerify: true,
+			},
 		},
 	})
 }
@@ -126,4 +132,15 @@ resource "github_project_card" "card" {
   note        = "%s"
 }
 `, note)
+}
+
+func testAccGithubProjectCardImportStateIdFunc(resourceName string) resource.ImportStateIdFunc {
+	return func(s *terraform.State) (string, error) {
+		rs, ok := s.RootModule().Resources[resourceName]
+		if !ok {
+			return "", fmt.Errorf("Not found: %s", resourceName)
+		}
+
+		return rs.Primary.Attributes["card_id"], nil
+	}
 }

@@ -18,9 +18,8 @@ func resourceGithubProjectCard() *schema.Resource {
 		Update: resourceGithubProjectCardUpdate,
 		Delete: resourceGithubProjectCardDelete,
 		Importer: &schema.ResourceImporter{
-			State: schema.ImportStatePassthrough,
+			State: resourceGithubProjectCardImport,
 		},
-
 		Schema: map[string]*schema.Schema{
 			"column_id": {
 				Type:     schema.TypeString,
@@ -49,7 +48,6 @@ func resourceGithubProjectCardCreate(d *schema.ResourceData, meta interface{}) e
 		return err
 	}
 
-	// FIXME: Remove URL parsing if a better option becomes available
 	columnIDStr := d.Get("column_id").(string)
 	columnID, err := strconv.ParseInt(columnIDStr, 10, 64)
 	if err != nil {
@@ -137,4 +135,27 @@ func resourceGithubProjectCardDelete(d *schema.ResourceData, meta interface{}) e
 	}
 
 	return nil
+}
+
+func resourceGithubProjectCardImport(d *schema.ResourceData, meta interface{}) ([]*schema.ResourceData, error) {
+
+	cardIDStr := d.Id()
+	cardID, err := strconv.ParseInt(cardIDStr, 10, 64)
+	if err != nil {
+		return []*schema.ResourceData{d}, unconvertibleIdErr(cardIDStr, err)
+	}
+
+	log.Printf("[DEBUG] Importing project card with card ID: %d", cardID)
+	client := meta.(*Organization).v3client
+	ctx := context.Background()
+	card, _, err := client.Projects.GetProjectCard(ctx, int64(cardID))
+	if card == nil || err != nil {
+		return []*schema.ResourceData{d}, err
+	}
+
+	d.SetId(card.GetNodeID())
+	d.Set("card_id", cardID)
+
+	return []*schema.ResourceData{d}, resourceGithubProjectCardRead(d, meta)
+
 }
