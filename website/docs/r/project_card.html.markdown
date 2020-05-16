@@ -23,7 +23,6 @@ resource "github_project_column" "column" {
 }
 
 resource "github_project_card" "card" {
-  project_id  = github_organization_project.project.id
   column_id = github_organization_project.column.column_id
   note        = "## Unaccepted 👇"
 }
@@ -32,8 +31,6 @@ resource "github_project_card" "card" {
 ## Argument Reference
 
 The following arguments are supported:
-
-* `project_id` - (Required) The ID of an existing project that the card will be created in.
 
 * `column_id` - (Required) The ID of the card.
 
