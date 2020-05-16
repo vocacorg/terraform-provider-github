@@ -153,8 +153,17 @@ func resourceGithubProjectCardImport(d *schema.ResourceData, meta interface{}) (
 		return []*schema.ResourceData{d}, err
 	}
 
+	// FIXME: Remove URL parsing if a better option becomes available
+	columnURL := card.GetColumnURL()
+	columnIDStr := strings.TrimPrefix(columnURL, client.BaseURL.String()+`projects/columns/`)
+	columnID, err := strconv.ParseInt(columnIDStr, 10, 64)
+	if err != nil {
+		return []*schema.ResourceData{d}, unconvertibleIdErr(columnIDStr, err)
+	}
+
 	d.SetId(card.GetNodeID())
 	d.Set("card_id", cardID)
+	d.Set("column_id", columnID)
 
 	return []*schema.ResourceData{d}, resourceGithubProjectCardRead(d, meta)
 
