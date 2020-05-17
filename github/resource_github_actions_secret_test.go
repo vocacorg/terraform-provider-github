@@ -11,6 +11,10 @@ import (
 )
 
 func TestAccGithubActionsSecret_basic(t *testing.T) {
+	if err := testAccCheckOrganization(); err != nil {
+		t.Skipf("Skipping because %s.", err.Error())
+	}
+
 	repo := os.Getenv("GITHUB_TEMPLATE_REPOSITORY")
 
 	secretResourceName := "github_actions_secret.test_secret"
@@ -76,7 +80,7 @@ func testAccCheckGithubActionsSecretExists(resourceName, secretName string, t *t
 			return fmt.Errorf("no repo name is set")
 		}
 
-		org := testAccProvider.Meta().(*Organization)
+		org := testAccProvider.Meta().(*Owner)
 		conn := org.v3client
 		_, _, err := conn.Actions.GetSecret(context.TODO(), org.name, repoName, secretName)
 		if err != nil {
@@ -89,13 +93,13 @@ func testAccCheckGithubActionsSecretExists(resourceName, secretName string, t *t
 }
 
 func testAccCheckGithubActionsSecretDestroy(s *terraform.State) error {
-	client := testAccProvider.Meta().(*Organization).v3client
+	client := testAccProvider.Meta().(*Owner).v3client
 
 	for _, rs := range s.RootModule().Resources {
 		if rs.Type != "github_actions_secret" {
 			continue
 		}
-		owner := testAccProvider.Meta().(*Organization).name
+		owner := testAccProvider.Meta().(*Owner).name
 		repoName := rs.Primary.Attributes["repository"]
 		secretName := rs.Primary.Attributes["secret_name"]
 
