@@ -452,6 +452,11 @@ func TestAccGithubRepository_topics(t *testing.T) {
 }
 
 func TestAccGithubRepository_autoInitForceNew(t *testing.T) {
+	if err := testAccCheckOrganization(); err != nil {
+		// Required by branch-protection resource used in Step 1
+		t.Skipf("Skipping because %s.", err.Error())
+	}
+
 	var repo github.Repository
 
 	rn := "github_repository.foo"
