@@ -8,6 +8,7 @@ import (
 )
 
 func TestAccGithubBranchDataSource_basic(t *testing.T) {
+
 	var (
 		name = "main"
 		repo = "test-repo"
