@@ -30,9 +30,9 @@ func testSweepRepositories(region string) error {
 		return err
 	}
 
-	client := meta.(*Owner).v3client
+	client := meta.(*Organization).v3client
 
-	repos, _, err := client.Repositories.List(context.TODO(), meta.(*Owner).name, nil)
+	repos, _, err := client.Repositories.List(context.TODO(), meta.(*Organization).name, nil)
 	if err != nil {
 		return err
 	}
@@ -41,7 +41,7 @@ func testSweepRepositories(region string) error {
 		if name := r.GetName(); strings.HasPrefix(name, "tf-acc-") || strings.HasPrefix(name, "foo-") {
 			log.Printf("Destroying Repository %s", name)
 
-			if _, err := client.Repositories.Delete(context.TODO(), meta.(*Owner).name, name); err != nil {
+			if _, err := client.Repositories.Delete(context.TODO(), meta.(*Organization).name, name); err != nil {
 				return err
 			}
 		}
@@ -452,11 +452,6 @@ func TestAccGithubRepository_topics(t *testing.T) {
 }
 
 func TestAccGithubRepository_autoInitForceNew(t *testing.T) {
-	if err := testAccCheckOrganization(); err != nil {
-		// Required by branch-protection resource used in Step 1
-		t.Skipf("Skipping because %s.", err.Error())
-	}
-
 	var repo github.Repository
 
 	rn := "github_repository.foo"
@@ -540,9 +535,9 @@ func testAccCheckGithubRepositoryExists(n string, repo *github.Repository) resou
 			return fmt.Errorf("No repository name is set")
 		}
 
-		owner := testAccProvider.Meta().(*Owner)
-		conn := owner.v3client
-		gotRepo, _, err := conn.Repositories.Get(context.TODO(), owner.name, repoName)
+		org := testAccProvider.Meta().(*Organization)
+		conn := org.v3client
+		gotRepo, _, err := conn.Repositories.Get(context.TODO(), org.name, repoName)
 		if err != nil {
 			return err
 		}
@@ -693,18 +688,18 @@ func testAccCheckGithubRepositoryAttributes(repo *github.Repository, want *testA
 }
 
 func testAccCheckGithubRepositoryDestroy(s *terraform.State) error {
-	conn := testAccProvider.Meta().(*Owner).v3client
-	owner := testAccProvider.Meta().(*Owner).name
+	conn := testAccProvider.Meta().(*Organization).v3client
+	orgName := testAccProvider.Meta().(*Organization).name
 
 	for _, rs := range s.RootModule().Resources {
 		if rs.Type != "github_repository" {
 			continue
 		}
 
-		gotRepo, resp, err := conn.Repositories.Get(context.TODO(), owner, rs.Primary.ID)
+		gotRepo, resp, err := conn.Repositories.Get(context.TODO(), orgName, rs.Primary.ID)
 		if err == nil {
 			if name := gotRepo.GetName(); gotRepo != nil && name == rs.Primary.ID {
-				return fmt.Errorf("Repository %s/%s still exists", owner, name)
+				return fmt.Errorf("Repository %s/%s still exists", orgName, name)
 			}
 		}
 		if resp.StatusCode != 404 {
@@ -717,21 +712,22 @@ func testAccCheckGithubRepositoryDestroy(s *terraform.State) error {
 
 func testAccCreateRepositoryBranch(branch, repository string) error {
 	baseURL := os.Getenv("GITHUB_BASE_URL")
+	org := os.Getenv("GITHUB_ORGANIZATION")
 	token := os.Getenv("GITHUB_TOKEN")
 
 	config := Config{
-		BaseURL: baseURL,
-		Token:   token,
-		Owner:   testOwner,
+		BaseURL:      baseURL,
+		Token:        token,
+		Organization: org,
 	}
 
 	c, err := config.Clients()
 	if err != nil {
 		return fmt.Errorf("Error creating github client: %s", err)
 	}
-	client := c.(*Owner).v3client
+	client := c.(*Organization).v3client
 
-	refs, _, err := client.Git.GetRefs(context.TODO(), testOwner, repository, "heads")
+	refs, _, err := client.Git.GetRefs(context.TODO(), org, repository, "heads")
 	if err != nil {
 		return fmt.Errorf("Error getting reference commit: %s", err)
 	}
@@ -744,7 +740,7 @@ func testAccCreateRepositoryBranch(branch, repository string) error {
 		},
 	}
 
-	_, _, err = client.Git.CreateRef(context.TODO(), testOwner, repository, newRef)
+	_, _, err = client.Git.CreateRef(context.TODO(), org, repository, newRef)
 	if err != nil {
 		return fmt.Errorf("Error creating git reference: %s", err)
 	}
@@ -900,6 +896,7 @@ resource "github_repository" "foo" {
 
 func testAccGithubRepositoryCreateFromTemplate(randString string) string {
 
+	owner := os.Getenv("GITHUB_ORGANIZATION")
 	repository := os.Getenv("GITHUB_TEMPLATE_REPOSITORY")
 
 	return fmt.Sprintf(`
@@ -925,7 +922,7 @@ resource "github_repository" "foo" {
   has_downloads      = true
 
 }
-`, randString, randString, testOwner, repository)
+`, randString, randString, owner, repository)
 }
 
 func testAccGithubRepositoryConfigTopics(randString string, topicList string) string {
