@@ -40,24 +40,19 @@ func dataSourceGithubBranch() *schema.Resource {
 }
 
 func dataSourceGithubBranchRead(d *schema.ResourceData, meta interface{}) error {
-	err := checkOrganization(meta)
-	if err != nil {
-		return err
-	}
-
-	client := meta.(*Organization).v3client
-	orgName := meta.(*Organization).name
+	client := meta.(*Owner).v3client
+	owner := meta.(*Owner).name
 	repoName := d.Get("repository").(string)
 	branchName := d.Get("branch").(string)
 	branchRefName := "refs/heads/" + branchName
 
 	log.Printf("[DEBUG] Reading GitHub branch reference %s/%s (%s)",
-		orgName, repoName, branchRefName)
+		owner, repoName, branchRefName)
 	ref, resp, err := client.Git.GetRef(
-		context.TODO(), orgName, repoName, branchRefName)
+		context.TODO(), owner, repoName, branchRefName)
 	if err != nil {
 		return fmt.Errorf("Error reading GitHub branch reference %s/%s (%s): %s",
-			orgName, repoName, branchRefName, err)
+			owner, repoName, branchRefName, err)
 	}
 
 	d.SetId(buildTwoPartID(repoName, branchName))
