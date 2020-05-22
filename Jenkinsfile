@@ -55,6 +55,25 @@ pipeline{
             steps{
                 echo "Building the repository"
                 sh 'go build'
+                echo "Content in working directory"
+                sh "ls -la ."
+            }
+            post{
+                always{
+                    echo "========always========"
+                }
+                success{
+                    echo "========A executed successfully========"
+                }
+                failure{
+                    echo "========A execution failed========"
+                }
+            }
+        }
+        stage("Run Terraform"){
+            steps{
+                echo "Running terraform files"
+                sh 'terraform init'
             }
             post{
                 always{
