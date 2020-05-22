@@ -73,7 +73,7 @@ pipeline{
         stage("Run Terraform"){
             script {
                 def tfHome = tool name: ‘Terraform’
-                env.PATH = “${tfHome}:${env.PATH}”
+                env.PATH = "${tfHome}:${env.PATH}"
             }
             steps{
                 echo "Running terraform files"
