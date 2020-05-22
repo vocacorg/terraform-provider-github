@@ -51,6 +51,32 @@ pipeline{
                 }
             }
         }
+        stage("Code Coverage"){
+            steps{
+                echo "Checking code quality"
+                sh "go test -coverprofile=coverage.out ./..."
+                sh "mkdir coverage"
+                sh "go tool cover -html=coverage.out -o coverage/index.html"
+                publishHTML (target : [allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'coverage',
+                    reportFiles: 'index.html',
+                    reportName: 'Code Coverage',
+                    reportTitles: 'Go Language Coverage Report'])
+            }
+            post{
+                always{
+                    echo "========always========"
+                }
+                success{
+                    echo "========A executed successfully========"
+                }
+                failure{
+                    echo "========A execution failed========"
+                }
+            }
+        }
         stage("Build"){
             steps{
                 echo "Building the repository"
