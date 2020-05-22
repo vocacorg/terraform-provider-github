@@ -76,7 +76,7 @@ pipeline{
             }
             steps{
                 echo "Running terraform files"
-                sh '${terraformHome}/bin/terraform init'
+                sh '${terraformHome}/terraform init'
             }
             post{
                 always{
