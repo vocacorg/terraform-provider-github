@@ -71,9 +71,12 @@ pipeline{
             }
         }
         stage("Run Terraform"){
+            environment {
+                terraformHome = tool 'terraform'
+            }
             steps{
                 echo "Running terraform files"
-                sh 'terraform init'
+                sh '${terraformHome}/bin/terraform init'
             }
             post{
                 always{
